@@ -34,11 +34,13 @@
         .cta-button:hover {
             background-color: #e63e00;
         }
+
         .registro {
             background-color: #222;
             padding: 30px;
             margin-top: 40px;
             border-radius: 10px;
+            display: none; /* Esto es clave para ocultar el formulario inicialmente */
         }
         .registro h2 {
             color: #ff4500;
@@ -73,16 +75,16 @@
     </style>
 </head>
 <body>
-    <!-- Contenido principal de la página -->
+    <!-- Contenido principal -->
     <div class="container">
         <h1>Bienvenido a FreeStayler</h1>
         <p>La red social para freestylers que quieren viajar y competir sin gastar de más.</p>
         <p>Encuentra hospedaje gratuito en ciudades donde se celebran competiciones y conecta con la comunidad.</p>
-        <a href="#" class="cta-button">Únete Ahora</a>
+        <a href="javascript:void(0);" class="cta-button" onclick="mostrarFormulario()">Únete Ahora</a>
     </div>
 
     <!-- Formulario de Registro -->
-    <section class="registro">
+    <section class="registro" id="formulario">
         <h2>Regístrate en FreeStayler</h2>
         <form action="#" method="POST">
             <label for="nombre">Nombre Completo:</label>
@@ -100,5 +102,13 @@
             <input type="submit" value="Registrar">
         </form>
     </section>
+
+    <script>
+        // Función que muestra el formulario cuando se hace clic en el botón
+        function mostrarFormulario() {
+            // Mostramos el formulario
+            document.getElementById('formulario').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
