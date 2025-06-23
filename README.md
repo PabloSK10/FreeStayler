@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FreeStayler - Conéctate y Compite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+        h1 {
+            color: #ff4500;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #ff4500;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: #e63e00;
+        }
+        .registro {
+            background-color: #222;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 10px;
+            display: none; /* formulario oculto al inicio */
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+        .registro h2 {
+            color: #ff4500;
+            text-align: center;
+        }
+        label {
+            font-size: 16px;
+            color: white;
+            display: block;
+            margin-top: 15px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #ff4500;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 18px;
+        }
+        input[type="submit"]:hover {
+            background-color: #e63e00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a FreeStayler</h1>
+        <p>La red social para freestylers que quieren viajar y competir sin gastar de más.</p>
+        <p>Encuentra hospedaje gratuito en ciudades donde se celebran competiciones y conecta con la comunidad.</p>
+        <a href="javascript:void(0);" class="cta-button" onclick="mostrarFormulario()">Únete Ahora</a>
+    </div>
+
+    <!-- Formulario oculto que aparece al hacer clic -->
+    <section class="registro" id="formulario">
+        <h2>Regístrate en FreeStayler</h2>
+        <form action="https://formsubmit.co/pabripans@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required> 
+            
+            <label for="rol">¿Cuál es tu rol en la comunidad?</label>
+            <select name="rol" id="rol" required>
+              <option value="">--Selecciona una opción--</option>
+              <option value="Freestyler">Compito (Freestyler)</option>
+              <option value="Anfitrión">Hospedo</option>
+              <option value="Ambos">Ambas</option>
+            </select>
+
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required>
+            
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad" required>
+            
+            <input type="submit" value="Registrar">
+        </form>
+    </section>
+
+    <script>
+        // Mostrar formulario al hacer clic
+        function mostrarFormulario() {
+            var formulario = document.getElementById('formulario');
+            formulario.style.display = 'block';
+            // Opcional: hacer scroll para que el formulario se vea
+            formulario.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
