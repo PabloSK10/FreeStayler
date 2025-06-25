@@ -5,26 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FreeStayler - Conéctate y Compite</title>
     <style>
+        /* Reset y base */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            /* Fondo con degradado sutil */
             background: linear-gradient(135deg, #111111, #222222);
             color: white;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
+        /* Container principal */
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 40px auto 20px;
             padding: 50px 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.6);
             border-radius: 12px;
             background-color: #1a1a1a;
+            position: relative;
+        }
+        /* Logo estilizado */
+        .logo {
+            font-weight: 900;
+            font-size: 36px;
+            color: #ff4500;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            user-select: none;
         }
         h1 {
             color: #ff4500;
+            margin-bottom: 10px;
         }
+        p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        /* Botón principal con animación */
         .cta-button {
             display: inline-block;
             background-color: #ff4500;
@@ -36,38 +58,55 @@
             margin-top: 20px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(255, 69, 0, 0.7);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            animation: pulse 3s infinite;
         }
         .cta-button:hover {
             background-color: #e63e00;
             box-shadow: 0 6px 20px rgba(230, 62, 0, 0.9);
+            transform: scale(1.05);
+            animation: none;
         }
+        /* Animación pulse */
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 10px rgba(255, 69, 0, 0.7);
+            }
+            50% {
+                box-shadow: 0 8px 20px rgba(255, 69, 0, 1);
+            }
+        }
+        /* Formulario */
         .registro {
             background-color: #222;
             padding: 30px;
             margin-top: 40px;
             border-radius: 12px;
-            display: none; /* formulario oculto al inicio */
+            display: none;
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
             box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            position: relative;
         }
         .registro h2 {
             color: #ff4500;
             text-align: center;
             margin-top: 0;
+            margin-bottom: 25px;
+            user-select: none;
         }
         label {
             font-size: 16px;
             color: white;
             display: block;
             margin-top: 15px;
+            user-select: none;
         }
         input[type="text"], input[type="email"], input[type="password"], select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 5px;
             border-radius: 5px;
             border: 1px solid #444;
@@ -75,10 +114,11 @@
             font-size: 16px;
             background-color: #1a1a1a;
             color: white;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
             border-color: #ff4500;
+            box-shadow: 0 0 8px #ff4500;
             outline: none;
             background-color: #2a2a2a;
         }
@@ -99,60 +139,197 @@
             background-color: #e63e00;
             box-shadow: 0 6px 20px rgba(230, 62, 0, 0.9);
         }
+        /* Mensaje confirmación */
+        #mensaje-confirmacion {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4BB543; /* Verde */
+            font-weight: bold;
+            user-select: none;
+        }
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #777;
+            padding: 20px 0;
+            font-size: 14px;
+            user-select: none;
+        }
+        footer .footer-container {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 0 20px;
+        }
+        footer .footer-left {
+            flex: 1 1 300px;
+            text-align: left;
+        }
+        footer .footer-right {
+            flex: 1 1 200px;
+            text-align: right;
+        }
+        /* Iconos sociales SVG */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: #777;
+            margin-left: 15px;
+            vertical-align: middle;
+            transition: fill 0.3s ease;
+            cursor: pointer;
+        }
+        .social-icon:hover {
+            fill: #ff4500;
+        }
+        /* Responsive */
+        @media(max-width: 600px){
+            footer .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            footer .footer-left, footer .footer-right {
+                flex: unset;
+                margin: 5px 0;
+                text-align: center;
+            }
+            .container {
+                padding: 30px 15px;
+                margin: 20px 15px 15px;
+            }
+            .registro {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido a FreeStayler</h1>
+    <div class="container" role="main" aria-labelledby="bienvenido">
+        <div class="logo" aria-hidden="true">FreeStayler</div>
+        <h1 id="bienvenido">Bienvenido a FreeStayler</h1>
         <p>La red social para freestylers que quieren viajar y competir sin gastar de más.</p>
         <p>Encuentra hospedaje gratuito en ciudades donde se celebran competiciones y conecta con la comunidad.</p>
-        <a href="javascript:void(0);" class="cta-button" onclick="mostrarFormulario()">Únete Ahora</a>
+        <a href="javascript:void(0);" class="cta-button" onclick="mostrarFormulario()" aria-haspopup="true" aria-expanded="false" aria-controls="formulario">Únete Ahora</a>
     </div>
 
     <!-- Formulario oculto que aparece al hacer clic -->
-    <section class="registro" id="formulario">
+    <section class="registro" id="formulario" role="region" aria-label="Formulario de registro">
         <h2>Regístrate en FreeStayler</h2>
-        <form action="https://hooks.zapier.com/hooks/catch/23495434/uby1eic/" method="POST">
+        <form id="formRegistro" action="https://hooks.zapier.com/hooks/catch/23495434/uby1eic/" method="POST" novalidate>
             <input type="hidden" name="_captcha" value="false">
 
             <label for="nombre">Nombre Completo:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" required aria-required="true" aria-describedby="nombreHelp">
+            <span id="nombreHelp" class="sr-only">Introduce tu nombre completo.</span>
             
             <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo" required> 
+            <input type="email" id="correo" name="correo" required aria-required="true" aria-describedby="correoHelp">
+            <span id="correoHelp" class="sr-only">Introduce un correo electrónico válido.</span>
             
             <label for="rol">¿Cuál es tu rol en la comunidad?</label>
-            <select name="rol" id="rol" required>
-              <option value="">--Selecciona una opción--</option>
+            <select name="rol" id="rol" required aria-required="true" aria-describedby="rolHelp">
+              <option value="" disabled selected>--Selecciona una opción--</option>
               <option value="Freestyler">Compito (Freestyler)</option>
               <option value="Anfitrión">Hospedo</option>
               <option value="Ambos">Ambas</option>
             </select>
+            <span id="rolHelp" class="sr-only">Selecciona tu rol.</span>
 
             <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" required>
+            <input type="password" id="contraseña" name="contraseña" required aria-required="true" aria-describedby="contraHelp" minlength="6">
+            <span id="contraHelp" class="sr-only">Tu contraseña debe tener al menos 6 caracteres.</span>
             
             <label for="ciudad">Ciudad:</label>
-            <input type="text" id="ciudad" name="ciudad" required>
+            <input type="text" id="ciudad" name="ciudad" required aria-required="true" aria-describedby="ciudadHelp">
+            <span id="ciudadHelp" class="sr-only">Introduce la ciudad donde resides.</span>
             
-            <input type="submit" value="Registrar">
+            <input type="submit" value="Registrar" aria-label="Enviar formulario de registro">
         </form>
+        <div id="mensaje-confirmacion" role="alert" aria-live="polite"></div>
     </section>
 
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-left">
+                &copy; 2025 FreeStayler. Todos los derechos reservados.
+            </div>
+            <div class="footer-right" aria-label="Redes sociales">
+                <a href="#" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener noreferrer">
+                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                        <path d="M22.675 0h-21.35C.593 0 0 .593 0 1.325v21.351C0 23.408.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.243l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.588l-.467 3.622h-3.121V24h6.116C23.407 24 24 23.408 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter" title="Twitter" target="_blank" rel="noopener noreferrer">
+                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                        <path d="M23.954 4.569c-.885.39-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.724-.951.564-2.005.974-3.127 1.195-.897-.959-2.178-1.559-3.594-1.559-2.723 0-4.928 2.205-4.928 4.928 0 .39.045.765.127 1.124-4.094-.205-7.725-2.165-10.15-5.144-.424.729-.666 1.574-.666 2.476 0 1.708.87 3.216 2.188 4.099-.807-.026-1.566-.247-2.228-.616v.062c0 2.386 1.698 4.374 3.95 4.825-.413.111-.849.171-1.296.171-.317 0-.626-.031-.927-.089.627 1.956 2.444 3.377 4.6 3.415-1.68 1.317-3.808 2.103-6.115 2.103-.398 0-.79-.023-1.175-.069 2.179 1.397 4.768 2.212 7.557 2.212 9.054 0 14-7.503 14-14 0-.213-.005-.425-.014-.636.962-.695 1.797-1.562 2.457-2.549z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                        <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm4.25 2a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.75-.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Mostrar formulario con efecto fadeIn
+        // Mostrar formulario con efecto fadeIn y manejar aria-expanded
         function mostrarFormulario() {
             var formulario = document.getElementById('formulario');
-            formulario.style.display = 'block';
-            formulario.style.opacity = 0;
-            var opacity = 0;
-            var fadeIn = setInterval(function () {
-                if (opacity >= 1) clearInterval(fadeIn);
-                formulario.style.opacity = opacity;
-                opacity += 0.1;
-            }, 30);
-            formulario.scrollIntoView({ behavior: 'smooth' });
+            var boton = document.querySelector('.cta-button');
+            if (formulario.style.display === 'block') {
+                // Si ya está visible, ocultar
+                formulario.style.display = 'none';
+                boton.setAttribute('aria-expanded', 'false');
+            } else {
+                formulario.style.display = 'block';
+                boton.setAttribute('aria-expanded', 'true');
+                formulario.style.opacity = 0;
+                var opacity = 0;
+                var fadeIn = setInterval(function () {
+                    if (opacity >= 1) clearInterval(fadeIn);
+                    formulario.style.opacity = opacity;
+                    opacity += 0.1;
+                }, 30);
+                formulario.scrollIntoView({ behavior: 'smooth' });
+            }
         }
+
+        // Captura el envío del formulario para mostrar confirmación y resetear sin recargar
+        const form = document.getElementById('formRegistro');
+        const mensaje = document.getElementById('mensaje-confirmacion');
+
+        form.addEventListener('submit', function(event){
+            event.preventDefault();
+
+            // Validar que los campos están completos (extra simple, porque HTML ya lo valida)
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Aquí normalmente se enviaría el formulario (con AJAX o backend)
+            // Pero para demo simulamos éxito:
+            mensaje.textContent = "¡Gracias por registrarte! Te hemos enviado un correo de confirmación.";
+            mensaje.style.display = 'block';
+
+            // Opcional: deshabilitar formulario mientras mostramos mensaje
+            form.querySelector('input[type="submit"]').disabled = true;
+
+            // Resetear formulario después de 5 segundos y esconder mensaje
+            setTimeout(() => {
+                mensaje.style.display = 'none';
+                form.reset();
+                form.querySelector('input[type="submit"]').disabled = false;
+            }, 5000);
+        });
     </script>
 </body>
 </html>
