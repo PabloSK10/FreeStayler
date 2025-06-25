@@ -1,83 +1,147 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FreeStayler - Conéctate y Compite</title>
     <style>
+        /* Fuentes y reset básicos */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #111;
+            background: linear-gradient(135deg, #1a1a1a, #111);
             color: white;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .container {
             max-width: 800px;
             margin: auto;
-            padding: 50px 20px;
+            padding: 60px 20px 40px;
+            background: rgba(30, 30, 30, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
         }
         h1 {
             color: #ff4500;
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 0.5em;
+            text-shadow: 0 0 10px #ff4500;
+        }
+        p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin: 0.5em 0 1em;
+            color: #ddd;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .cta-button {
             display: inline-block;
             background-color: #ff4500;
             color: white;
-            padding: 15px 30px;
+            padding: 18px 40px;
             text-decoration: none;
-            font-size: 20px;
-            border-radius: 5px;
-            margin-top: 20px;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 50px;
+            margin-top: 30px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 69, 0, 0.6);
+            border: none;
         }
         .cta-button:hover {
             background-color: #e63e00;
+            box-shadow: 0 6px 18px rgba(230, 62, 0, 0.8);
         }
+
         .registro {
             background-color: #222;
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 10px;
-            display: none; /* formulario oculto al inicio */
-            max-width: 500px;
+            padding: 40px 35px;
+            margin-top: 50px;
+            border-radius: 15px;
+            max-width: 520px;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
+            box-shadow: 0 0 15px #ff4500aa;
+            display: none;
         }
         .registro h2 {
             color: #ff4500;
             text-align: center;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-shadow: 0 0 8px #ff4500;
         }
         label {
-            font-size: 16px;
+            font-size: 17px;
             color: white;
             display: block;
-            margin-top: 15px;
+            margin-top: 20px;
+            font-weight: 600;
         }
         input[type="text"], input[type="email"], input[type="password"], select {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1.5px solid #444;
+            background-color: #111;
+            color: white;
             font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+            border-color: #ff4500;
+            outline: none;
+            box-shadow: 0 0 8px #ff4500;
+            background-color: #222;
         }
         input[type="submit"] {
             background-color: #ff4500;
             color: white;
-            padding: 15px 30px;
+            padding: 18px 0;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.7);
+            transition: background-color 0.3s ease;
         }
         input[type="submit"]:hover {
             background-color: #e63e00;
+            box-shadow: 0 7px 20px rgba(230, 62, 0, 0.9);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 15px 30px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .cta-button {
+                font-size: 18px;
+                padding: 14px 30px;
+            }
+            .registro {
+                padding: 30px 20px;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -86,13 +150,13 @@
         <h1>Bienvenido a FreeStayler</h1>
         <p>La red social para freestylers que quieren viajar y competir sin gastar de más.</p>
         <p>Encuentra hospedaje gratuito en ciudades donde se celebran competiciones y conecta con la comunidad.</p>
-        <a href="javascript:void(0);" class="cta-button" onclick="mostrarFormulario()">Únete Ahora</a>
+        <button class="cta-button" onclick="mostrarFormulario()">Únete Ahora</button>
     </div>
 
     <!-- Formulario oculto que aparece al hacer clic -->
     <section class="registro" id="formulario">
         <h2>Regístrate en FreeStayler</h2>
-        <form action="https://hooks.zapier.com/hooks/catch/23495434/uby1eic/" method="POST">
+        <form action="https://hooks.zapier.com/hooks/catch/23495434/uby1eic/" method="POST" autocomplete="off">
             <input type="hidden" name="_captcha" value="false">
 
             <label for="nombre">Nombre Completo:</label>
@@ -124,7 +188,6 @@
         function mostrarFormulario() {
             var formulario = document.getElementById('formulario');
             formulario.style.display = 'block';
-            // Opcional: hacer scroll para que el formulario se vea
             formulario.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
